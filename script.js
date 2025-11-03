@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(trees)
       trees.forEach(tree => {
         const li = document.createElement("li")
-        li.textContent = `Common Name: ${tree.common_name} || Scientific Name: ${tree.botanical_name} || Diameter: ${tree.diameter_at_breast_height}" `
+        li.textContent = ` Tree ID: ${tree.tree_id} || Common Name: ${tree.common_name} || Scientific Name: ${tree.botanical_name} || Diameter: ${tree.diameter_at_breast_height}" `
         list.appendChild(li)
       })
     } catch (error) {
