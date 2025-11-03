@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Transit</title>
 </head>
+
 <body>
     <header>
-        <h1>The great API website</h1>
+        <h1>Tree Searcherizer</h1>
     </header>
-    <section>
-        <input id="treeCount" type="number" placeholder="1-10" min="1" max="10">
-        <input id="treeName" type="text" placeholder="Input tree common name">
-        <button id="showTrees">Show Trees</button>
 
-        <ul id="treeList"></ul>
+    <main>
+        <section aria-labelledby="search">
+            <h2 id="search">Search Trees</h2>
+            <form id="treeSearchForm">
+                <label for="treeCount">Number of Trees to grab:</label>
+                <input id="treeCount" type="number" placeholder="1-10" min="1" max="10">
 
-    </section>
+                <label for="treeName">Common Name:</label>
+                <input id="treeName" type="text" placeholder="Input tree common name">
 
+                <button id="showTrees" type="submit">Show Trees</button>
+            </form>
+            <ul id="treeList"></ul>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>

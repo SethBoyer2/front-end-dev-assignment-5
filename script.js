@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // forgot to use SoQL queries in the URL for an embarassingly long amount of debugging time. Like an extremely long time.
-    const url = `https://data.winnipeg.ca/resource/hfwk-jp4h.json?$limit=${treeLimit}&$where=upper(common_name) like upper('%25${treeName}%25')`
+    const url = `https://data.winnipeg.ca/resource/hfwk-jp4h.json?$limit=${treeLimit}&$where=upper(common_name) like upper('%25${commonName}%25')`
 
     try {
       const response = await fetch(url)
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(trees)
       trees.forEach(tree => {
         const li = document.createElement("li")
-        li.textContent = `${tree.common_name}`
+        li.textContent = `Common Name: ${tree.common_name} || Scientific Name: ${tree.botanical_name} || Diameter: ${tree.diameter_at_breast_height}" `
         list.appendChild(li)
       })
     } catch (error) {
