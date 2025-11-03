@@ -15,9 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!treeLimit) {
         console.error("Please enter a number of trees to display")
+        const errorLi = document.createElement("li")
+        errorLi.textContent = "Please enter a number of trees to display"
+        list.appendChild(errorLi)
+        return
     }
     if (!commonName) {
         console.error("Please enter a tree name to search")
+        const errorLi2 = document.createElement("li")
+        errorLi2.textContent = "Please enter a tree name to search."
+        list.appendChild(errorLi2)
+        return
     }
 
     // forgot to use SoQL queries in the URL for an embarassingly long amount of debugging time. Like an extremely long time.
