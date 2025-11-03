@@ -1,21 +1,42 @@
 // vw0mZwdPoXKE8BwzT8rQ
-// endpoint https://data.winnipeg.ca/api/v3/views/h923-dxid/query.json
 // endpoint new endpoint good endpoint that is not bad
-async function getTrees () {
+document.addEventListener("DOMContentLoaded", () => {
+  const treeCount = document.getElementById("treeCount")
+  const treeName = document.getElementById("treeName")
+  const showTrees = document.getElementById("showTrees")
+
+  showTrees.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const treeLimit = treeCount.value
+    const commonName = treeName.value
+    const list = document.getElementById("treeList")
+    list.innerHTML=("")
+
+    if (!treeLimit) {
+        console.error("Please enter a number of trees to display")
+    }
+    if (!commonName) {
+        console.error("Please enter a tree name to search")
+    }
+
+    // forgot to use SoQL queries in the URL for an embarassingly long amount of debugging time. Like an extremely long time.
+    const url = `https://data.winnipeg.ca/resource/hfwk-jp4h.json?$limit=${treeLimit}&$where=upper(common_name) like upper('%25${treeName}%25')`
+
     try {
-        const response = await fetch("https://data.winnipeg.ca/resource/hfwk-jp4h.json")
-    if(!response.ok) {
-        throw new Error(`HTTP Error: Status: ${response.status}`)
-    }
-        return response.json();
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`)
+      }
+      const trees = await response.json()
+      console.log(trees)
+      trees.forEach(tree => {
+        const li = document.createElement("li")
+        li.textContent = `${tree.common_name}`
+        list.appendChild(li)
+      })
     } catch (error) {
-        console.error("Failed to fetch trees.")
+      console.error("Failed to fetch trees.", error)
     }
-}
-
-async function listTrees(){
-    const trees = await getTrees();
-    console.log(trees)
-}
-
-listTrees();
+  })
+})
